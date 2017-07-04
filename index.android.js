@@ -4,57 +4,40 @@
  * @flow
  */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View
-} from 'react-native';
-import {Navigation} from 'react-native-navigation';
+} from 'react-native'
 
-class react_native_navigation_bootstrap extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press RR to reload,{'\n'}
-          Cmd+M for dev menu
-        </Text>
-      </View>
-    );
-  }
+import { Provider } from 'react-redux'
+import { Navigation } from 'react-native-navigation'
+
+import PushScreen from './screens/push'
+
+import configureStore from './store'
+
+export const navigatorStyle = {
+  navBarBackgroundColor: 'white',
+  navBarTextColor: 'black',
+  statusBarTextColorScheme: 'light',
+  drawUnderNavBar: false
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+const store = configureStore()
 
-Navigation.registerComponent('react-native-navigation-bootstrap', () => react_native_navigation_bootstrap);
+function registerScreens (store, Provider) {
+  Navigation.registerComponent('PUSH', () => PushScreen, store, Provider)
+}
+
+registerScreens(store, Provider)
+
 Navigation.startSingleScreenApp({
   screen: {
-    screen: 'react-native-navigation-bootstrap',
-    title: 'Navigation Bootstrap'
+    screen: 'PUSH',
+    title: 'Screen',
+    overrideBackPress: true    
   }
 });
