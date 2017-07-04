@@ -1,0 +1,16 @@
+{
+  "name": "react_native_navigation_bootstrap",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start"
+  },
+  "dependencies": {
+    "react": "15.4.2",
+    "react-native": "0.42.0",
+    "react-native-navigation": "next",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.1",
+    "redux-thunk": "^2.2.0"
+  }
+}
